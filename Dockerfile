@@ -12,10 +12,10 @@ RUN mkdir /ib-gateway
 WORKDIR /ib-gateway
 
 # download and install the IB-gateway
-RUN wget total.jar -q https://download2.interactivebrokers.com/installers/ibgateway/latest-standalone/ibgateway-latest-standalone-linux-x64.sh \
+RUN wget https://download2.interactivebrokers.com/installers/ibgateway/latest-standalone/ibgateway-latest-standalone-linux-x64.sh \
     && chmod +x ibgateway-latest-standalone-linux-x64.sh \
     && echo "n" | ./ibgateway-latest-standalone-linux-x64.sh \
-    && mv /root/Jts/954 /opt/IBJts
+    && mv /root/Jts/ibgateway/955 /opt/IBJts
 
 
 # install init scripts and binaries
