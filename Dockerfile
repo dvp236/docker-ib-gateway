@@ -1,4 +1,4 @@
-FROM orgsync/java8
+FROM ubuntu
 MAINTAINER vishal/dharmik
 
 
