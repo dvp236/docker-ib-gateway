@@ -1,5 +1,6 @@
 FROM orgsync/java8
-MAINTAINER clifton <cliftonk@gmail.com>
+MAINTAINER vishal/dharmik
+
 
 # install xvfb and other X dependencies for IB
 RUN apt-get update -y \
@@ -11,11 +12,14 @@ RUN mkdir /ib-gateway
 WORKDIR /ib-gateway
 
 # download and install the IB-gateway
-RUN wget -O total.jar -q https://download2.interactivebrokers.com/java/classes/total.2015.jar \
-    && wget -O jts.jar -q https://download2.interactivebrokers.com/java/classes/latest/jts.latest.jar
+RUN wget total.jar -q https://download2.interactivebrokers.com/installers/ibgateway/latest-standalone/ibgateway-latest-standalone-linux-x64.sh \
+    && chmod +x ibgateway-latest-standalone-linux-x64.sh \
+    && echo "n" | ./ibgateway-latest-standalone-linux-x64.sh \
+    && mv /root/Jts/954 /opt/IBJts
+
 
 # install init scripts and binaries
-ADD config/jts.ini /ib-gateway/jts.ini
+ADD config/jts.ini /opt/IBJts/jars
 ADD init/xvfb_init /etc/init.d/xvfb
 ADD init/vnc_init /etc/init.d/vnc
 ADD bin/xvfb-daemon-run /usr/bin/xvfb-daemon-run
