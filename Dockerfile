@@ -13,14 +13,20 @@ RUN mkdir /ib-gateway
 WORKDIR /ib-gateway
 
 # download and install the IB-gateway
-RUN wget https://download2.interactivebrokers.com/installers/ibgateway/latest-standalone/ibgateway-latest-standalone-linux-x64.sh && \
-    chmod +x ibgateway-latest-standalone-linux-x64.sh && \
-    echo "n" | ./ibgateway-latest-standalone-linux-x64.sh && \
-    mv /root/Jts/ibgateway/955/jars /ib-gateway
+#RUN wget https://download2.interactivebrokers.com/installers/ibgateway/latest-standalone/ibgateway-latest-standalone-linux-x64.sh && \
+#    chmod +x ibgateway-latest-standalone-linux-x64.sh && \
+#    echo "n" | ./ibgateway-latest-standalone-linux-x64.sh && \
+#    mv /root/Jts/ibgateway/955/jars /ib-gateway
 
-
+ADD jts4launch.jar jts4launch.jar
+ADD log4j-1.2.17.jar log4j-1.2.17.jar
+ADD total.jar total.jar
+ADD twslaunch.jar twslaunch.jar
+ADD twslaunch-install4j-1.5.jar twslaunch-install4j-1.5.jar
 # install init scripts and binaries
-# ADD config/jts.ini /opt/IBJts/jars
+
+
+
 ADD config/jts.ini /ib-gateway/jts.ini
 ADD init/xvfb_init /etc/init.d/xvfb
 ADD init/vnc_init /etc/init.d/vnc
