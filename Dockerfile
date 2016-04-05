@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM orgsync/java8
 MAINTAINER dharmik
 
 
@@ -16,11 +16,12 @@ WORKDIR /ib-gateway
 RUN wget https://download2.interactivebrokers.com/installers/ibgateway/latest-standalone/ibgateway-latest-standalone-linux-x64.sh && \
     chmod +x ibgateway-latest-standalone-linux-x64.sh && \
     echo "n" | ./ibgateway-latest-standalone-linux-x64.sh && \
-    mv /root/Jts/ibgateway/955 /opt/IBJts
+    mv /root/Jts/ibgateway/955/jars /ib-gateway
 
 
 # install init scripts and binaries
-ADD config/jts.ini /opt/IBJts/jars
+# ADD config/jts.ini /opt/IBJts/jars
+ADD config/jts.ini /ib-gateway/jts.ini
 ADD init/xvfb_init /etc/init.d/xvfb
 ADD init/vnc_init /etc/init.d/vnc
 ADD bin/xvfb-daemon-run /usr/bin/xvfb-daemon-run
