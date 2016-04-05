@@ -1,4 +1,4 @@
-FROM orgsync/java8
+FROM orgsync/java/8
 MAINTAINER dharmik
 
 
