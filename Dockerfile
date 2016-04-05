@@ -1,10 +1,9 @@
-FROM ubuntu:14.04
+FROM java
 MAINTAINER dharmik
 
 
 # install xvfb and other X dependencies for IB
 RUN apt-get update -y \
-    && apt-get install -y wget \
     && apt-get install -y xvfb libxrender1 libxtst6 x11vnc socat \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
