@@ -1,9 +1,10 @@
-FROM ubuntu
-MAINTAINER vishal/dharmik
+FROM ubuntu:14.04
+MAINTAINER dharmik
 
 
 # install xvfb and other X dependencies for IB
 RUN apt-get update -y \
+    && apt-get install -y wget
     && apt-get install -y xvfb libxrender1 libxtst6 x11vnc socat \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
@@ -12,8 +13,8 @@ RUN mkdir /ib-gateway
 WORKDIR /ib-gateway
 
 # download and install the IB-gateway
-RUN curl -o https://download2.interactivebrokers.com/installers/ibgateway/latest-standalone/ibgateway-latest-standalone-linux-x64.sh && \
-    chmod a+x ibgateway-latest-standalone-linux-x64.sh && \
+RUN wget https://download2.interactivebrokers.com/installers/ibgateway/latest-standalone/ibgateway-latest-standalone-linux-x64.sh && \
+    chmod +x ibgateway-latest-standalone-linux-x64.sh && \
     echo "n" | ./ibgateway-latest-standalone-linux-x64.sh && \
     mv /root/Jts/ibgateway/955 /opt/IBJts
 
