@@ -5,7 +5,7 @@ MAINTAINER dharmik
 # install xvfb and other X dependencies for IB
 RUN apt-get update -y \
     && apt-get install -y xvfb libxrender1 libxtst6 x11vnc socat \
-    && apt-get install wget \
+    && apt-get install -y wget \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
