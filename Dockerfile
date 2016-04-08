@@ -1,4 +1,4 @@
-FROM java:8
+FROM ubuntu:14.04
 MAINTAINER dharmik
 
 
